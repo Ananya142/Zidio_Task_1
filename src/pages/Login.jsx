@@ -47,59 +47,67 @@ function Login() {
 }
 
 export default Login;*/
-   import { useForm } from "react-hook-form";
-import { toast } from "react-toastify";
-import axios from "axios";
+ import React from "react";
 
-export default function Login() {
-  const { register, handleSubmit, formState: { errors } } = useForm();
-
-  const onSubmit = async (data) => {
-    try {
-      const res = await axios.post("http://localhost:5000/api/login", data);
-      localStorage.setItem("token", res.data.token);
-      toast.success("Logged in successfully!");
-    } catch (err) {
-      toast.error(err.response?.data?.message || "Login failed");
-    }
-  };
-
+const Login = () => {
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-      <form onSubmit={handleSubmit(onSubmit)} className="bg-white p-8 rounded-lg shadow-md w-96">
-        <h1 className="text-2xl font-bold text-center mb-6">Excel Analytics Platform</h1>
-        
-        {/* Email Input */}
-        <div className="mb-4">
-          <label className="block text-gray-700 mb-2">Email</label>
-          <input
-            type="email"
-            {...register("email", { required: "Email is required" })}
-            className="w-full p-2 border rounded"
-          />
-          {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>}
-        </div>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-tr from-indigo-500 via-purple-600 to-pink-500 animate-gradient-x">
+      <div className="bg-white/20 backdrop-blur-lg rounded-xl shadow-xl p-10 w-full max-w-md border border-white/30">
+        <h2 className="text-4xl font-bold text-center text-white mb-6 drop-shadow-md animate-pulse">
+          👋 Welcome Back!
+        </h2>
+        <form>
+          {/* Email Field */}
+          <div className="mb-5">
+            <label htmlFor="email" className="block text-white text-sm font-semibold mb-2">
+              Email
+            </label>
+            <input
+              type="email"
+              id="email"
+              placeholder="you@example.com"
+              className="w-full px-4 py-3 rounded-lg bg-white/90 text-gray-800 font-medium focus:outline-none focus:ring-4 focus:ring-purple-300 transition duration-300"
+              required
+            />
+          </div>
 
-        {/* Password Input */}
-        <div className="mb-6">
-          <label className="block text-gray-700 mb-2">Password</label>
-          <input
-            type="password"
-            {...register("password", { required: "Password is required" })}
-            className="w-full p-2 border rounded"
-          />
-          {errors.password && <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>}
-        </div>
+          {/* Password Field */}
+          <div className="mb-6">
+            <label htmlFor="password" className="block text-white text-sm font-semibold mb-2">
+              Password
+            </label>
+            <input
+              type="password"
+              id="password"
+              placeholder="••••••••"
+              className="w-full px-4 py-3 rounded-lg bg-white/90 text-gray-800 font-medium focus:outline-none focus:ring-4 focus:ring-pink-300 transition duration-300"
+              required
+            />
+          </div>
 
-        <button type="submit" className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">
-          Login
-        </button>
+          {/* Login Button */}
+          <button
+            type="submit"
+            className="w-full py-3 font-bold text-white bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 rounded-lg hover:from-indigo-500 hover:via-purple-500 hover:to-pink-500 transition-all duration-300 shadow-lg"
+          >
+            🚀 Login
+          </button>
+        </form>
 
-        <p className="text-center mt-4 text-sm text-gray-600">
-          New user? <a href="/signup" className="text-blue-600 hover:underline">Sign up</a>
+        {/* Register link */}
+        <p className="text-sm text-center text-white mt-6 font-light">
+          Don’t have an account?{" "}
+          <a
+            href="/register"
+            className="underline hover:text-pink-200 transition-colors"
+          >
+            Register here
+          </a>
         </p>
-      </form>
+      </div>
     </div>
   );
-}
-        
+};
+
+export default Login;
+
