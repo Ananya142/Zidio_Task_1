@@ -7,18 +7,21 @@ export default {
   theme: {
     extend: {
       animation: {
-        "gradient-x": "gradientX 5s ease infinite",
+        'fade-in': 'fadeIn 1s ease-in-out both',
       },
       keyframes: {
-        gradientX: {
-          "0%, 100%": { backgroundPosition: "0% 50%" },
-          "50%": { backgroundPosition: "100% 50%" },
+        fadeIn: {
+          '0%': {
+            opacity: '0',
+            transform: 'translateY(20px)',
+          },
+          '100%': {
+            opacity: '1',
+            transform: 'translateY(0)',
+          },
         },
-      },
-      backgroundSize: {
-        "200%": "200% 200%",
       },
     },
   },
   plugins: [],
-};
+}

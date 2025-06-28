@@ -1,15 +1,19 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Upload from "./pages/Upload"; // ✅ NEW IMPORT
 
-function App() {
+const App = () => {
   return (
-    <BrowserRouter>
+    <Router>
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/upload" element={<Upload />} /> {/* ✅ NEW ROUTE */}
       </Routes>
-    </BrowserRouter>
+    </Router>
   );
-}
+};
+
 export default App;
